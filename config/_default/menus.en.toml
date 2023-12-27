@@ -32,9 +32,9 @@
 #  pageRef = "posts"
 #  weight = 20
 
-#[[subnavigation]]
+#[subnavigation]]
 #  name = "An interesting topic"
-#  pageRef = "tags/interesting-topic"
+#  pageRef = "tags/python"
 #  weight = 10
 
 #[[subnavigation]]

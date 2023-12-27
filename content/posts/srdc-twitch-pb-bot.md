@@ -1,7 +1,8 @@
 +++
-title = 'Creating a Customisable Speedrunning PB Bot on Twitch'
-date = 2023-12-22T23:08:35Z
-draft = true
+title = 'SRCommand: A Self-hosted, Customisable Speedrun PB Bot for Twitch'
+date = 2023-11-10
+tags = ['Python', 'API', 'Django', 'Speedrunning']
+draft = false
 +++
 
 ## The goal
@@ -39,5 +40,24 @@ As I mentioned, I had seen simple implementations of PB bots previously, but I s
 The configuration is an initial setup, where you choose the games, categories and command names. The user only needs to return to this if they want to update any of these details but they will otherwise be stored in a SQLite database in their instance of the bot.
 This is completed in a *very* simple, albeit intuitive GUI shown below, achieved with Django templating.
 
+*Adding a game*
+![Adding a game to SRCommand config](img/SRCommand_Game_Config.png)
+
+*Adding a category*
+![Adding a category](img/SRCommand_Game_Config.png)
+
+*For more complex categories filters can be applied to give more control to the user*
+![Adding a filter](img/SRCommand_Filter_Config.png)
+
 ### Commands
 Once your command is set up in your general purpose Twitch bot of choice, chatters in your stream will now be able to easily query PBs without having to switch tabs or close the mobile app!
+
+*Example API response*
+![Command execution example response](img/SRCommand_Response.png)
+
+## Caveats
+The SRDC API is versioned, and hopefully any breaking changes will not be introduced into the version this tool is dependent on (V1). In case they are, this may result in unexpected or incomplete responses. Please feel free to raise an issue on Github if you notice anything. The way your general purpose bot calls APIs may also change over time, so you may also find that an issue could be caused by this.
+
+SRDC communities are fairly autonomous and have different ways to structure games and categories, some which may not be arranged in a way that aligns with the design of SRCommand. I have attempted to cover a broad range of popular configurations, while not testing for more unique setups. As the project is open source, should you wish to adapt it, I would encourage you to fork the project.
+
+Thanks for reading!
