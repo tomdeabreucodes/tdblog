@@ -1,5 +1,5 @@
 +++
-title = 'PyJig: A Digital Jigsaw Puzzle Factory'
+title = 'PyJigsaw: A Digital Jigsaw Puzzle Factory'
 date = 2023-12-23T00:24:02Z
 tags = ['Python', 'SVG', 'Package']
 draft = true
@@ -17,19 +17,72 @@ However, If you are simply looking for an overall template which can create a pu
 The design of a puzzle cut is typically fed into a CNC, laser cutting machine which will trace the design with high precision leaving you with the individual pieces, and to 'cut' the puzzle up digitally, we will use a similar principle. Although rather than approaching the design as a whole, as you would for a physical puzzle, I instead generated an SVG made up of cut paths for every individual piece.
 
 ## Design
-The design of the actual cut involved learning about SVG curves and how to connect them together in a way that looked satisfying and could be procedurally generated. Overall the piece design I went with was similar to the conventional puzzle shape with either a notch or a gap on each of the interior piece sides, but with a more exaggerated curve to achieve a more unique look. I added randomness to introduce heterogeneity by determining whether each side of the piece was a notch or a gap. While there is randomness, the pieces are not truly unique. This is a trait which is valued by puzzle enthusiasts, as uniqueness of each piece makes it easier to avoid 'false fits', which is where two pieces may seem to slot together perfectly, but are in fact not a match. Adding randomness (i.e. a jitter variable) into the curve values themselves would help achieve this and make the motif more interesting, and is a worthwhile future enhancement to this project (similar to Drardech's implementation linked in the intro).
-
-## Masking
-To perform the digital cut itself, a binary mask is used to tag pixels inside the svg path as visible and everything else not.
+The design of the actual cut involved learning about SVG curves and how to connect them together in a way that looked satisfying and could be procedurally generated. Overall the piece design I went with was similar to the conventional puzzle shape with either a notch or a gap on each of the interior piece sides, but with a more exaggerated curve to achieve a more unique look. I added randomness to introduce heterogeneity by determining whether each side of the piece was a notch or a gap. While there is randomness, the pieces are not truly unique. This is a trait which is valued by puzzle enthusiasts, as uniqueness of each piece makes it easier to avoid 'false fits', which is where two pieces may seem to slot together perfectly, but are in fact not a match. Adding randomness (i.e. a jitter variable) into the curve values themselves would help achieve this and make the cut more interesting, and is a worthwhile future enhancement to this project (similar to Drardech's implementation linked in the intro).
 
 ## Cut
-This masked version of each piece is then output as an individual vector or image file to represent the individual piece.
+This SVG paths are then used to mask each pieces shape using a [`clipPath`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath), this process loops through all of the pieces and outputs the piece files to a directory of your choosing.
 
 ## Use cases
 - Create a digital puzzle set
 - Create blank template for a puzzle of any custom sized
 
+## The code
+https://github.com/tomdeabreucodes/pyjig
+
+## Package
+I packaged this project so it could be easily installed and used locally or in other projects, you can find it listed on PyPI here along with installation instructions: https://pypi.org/project/pyjigsaw/
+
+## Examples
+First, install the module in a new project directory, I recommend setting up a [venv](https://docs.python.org/3/library/venv.html) first:
+```bash
+pip install pyjigsaw
+```
+We will also be using the following image in the examples, so feel free to download it [here](https://natureconservancy-h.assetsadobe.com/is/image/content/dam/tnc/nature/en/photos/Zugpsitze_mountain.jpg?crop=0%2C214%2C3008%2C1579&wid=1200&hei=630&scl=2.506666666666667)
+
+### Creating a blank puzzle template
+
+```python
+from pyjigsaw import jigsawfactory
+
+# Create a jigsaw cut template 500x500 pixels and 4x4 pieces
+mycut = jigsawfactory.Cut(4, 4, 500, 500)
+
+mycut.to_svg("template.svg")
+
+*./template.svg*
+![Puzzle Cut Template SVG File](img/template.png)
+```
+### Creating a template using an image to set the size
+Rather than manually defining size of the template in pixels, instead we will pass an image which we have saved locally to determine the size. In order for this to work we need to pass the image file path and set `use_image` to `True`.
+
+```python
+# Create a jigsaw cut template
+mycut = jigsawfactory.Cut(5, 8, image="./Zugpsitze_mountain.jpg", use_image=True, stroke_color="red", fill_color="black")
+
+mycut.to_svg("template.svg")
+```
+
+*./template.svg*
+![Puzzle Cut Template SVG File](img/template2.png)
+
+### Generating a puzzle set
+Let's use the same cut file generated in the previous example. To create a puzzle set, we need to pass a valid Cut object and the image we want to apply the cut to. This does not necessarily need to be the same image we generated the cut template with, but in most cases this will be what is required.
+Bear in mind that this function does not automatically create the directory you pass to the `generate_svg_jigsaw` method, so make sure to create it before.
+
+```python
+# Generate a jigsaw set from the cut template
+myjig = jigsawfactory.Jigsaw(mycut, "Zugpsitze_mountain.jpg")
+myjig.generate_svg_jigsaw("./Pieces")
+```
+The jigsaw set has now been generated in the provided directory, and should appear as below
+![Complete puzzle set](img/Puzzle_Set.png)
+
+
+## Etsy
+Some time between shelving my puzzle app and packaging and open sourcing this project as a standalone package, I decided to try to showcase it by creating a pack of templates with the SVGs flattened for a wide array of size options so people could purchase them for laser cutting/CNC machines and offer them on Etsy, it is a surprisingly saturated niche and I listed it with no expectations. https://www.etsy.com/uk/listing/1567419311/21-jigsaw-puzzle-templates-laser-cut
+
 ## Limitations
 While the bitmap version of the exports are economical, the SVG version contains the parts of the underlying image hidden by the mask, taking up an unnecessary amount of space. A potential improvement to my implementation would be to crop the underlying image to a slightly larger area than the puzzle piece, meaning that minimal excess image data is stored.
 
 A limtation of using the bitmap version is the resolution of the pixels. The pieces are made up of curves which may cause unnatural or jagged looking edges once converted. Where possible it would be advisable to use SVGs to retain the perfec curves.
+
