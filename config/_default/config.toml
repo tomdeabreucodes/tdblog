@@ -3,10 +3,10 @@
 # https://blowfish.page/docs/getting-started/
 
 theme = "blowfish"
-baseURL = "https://blog.tomdeabreu.uk/"
+baseURL = "https://tdblog.onrender.com"
 defaultContentLanguage = "en"
 
-timeout = "2m"
+timeout = "5m"
 
 # pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
 
