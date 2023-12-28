@@ -6,14 +6,14 @@ draft = false
 +++
 
 ## The Problem
-Most good e-commerce websites will have a built in feature to remind you when a product is back in stock. This is the ideal scenario when there's a popular product you want to get next time it comes availble. Just plug in your email or mobile number, and get a ping when the stock is replenished. While this is the standard, it isn't always an option, which is where I found myself when trying to get my hands on a Kensington track ball last year. 
+Most good e-commerce websites will have a built-in feature to remind you when a product is back in stock. This is the ideal scenario when there's a popular product you want to get next time it becomes available. Just plug in your email or mobile number, and get a ping when the stock is replenished. While this is the standard, it isn't always an option, which is where I found myself when trying to get my hands on a Kensington trackball last year. 
 
-I was frustrated, as there was no clear information about when this product would be coming to my region. With this type of product I didn't expect a huge release or a large amount of stock, so I wanted to try and get one as soon as it was available. Conflicting with this goal was the fact that I did not want to sink my time into checking and remembering to look at their website, especially because no estimate timeline was provided.
+I was frustrated, as there was no clear information about when this product would be coming to my region. With this type of product I didn't expect a huge release or a large amount of stock, so I wanted to try and get one as soon as it was available. Conflicting with this goal was the fact that I did not want to sink my time into checking and remembering to look at their website, especially because no estimated timeline was provided.
 
 Naturally, I wondered if there was a straightforward solution to this with code.
 
 ## The Solution
-In order to address this problem, I decided to create a stock checker which would regularly check the website for me in the background and automatically email me once the page had gone live.
+To address this problem, I decided to create a stock checker which would regularly check the website for me in the background and automatically email me once the page had gone live.
 ### Python Script
 To achieve this, it mainly relied on two pillars. The most important of which is **Selenium**, a browser automation module available in Python and several other languages. Via Selenium I would automate the process of accessing the product page and checking for the presence of a "Where to buy" button. From researching other product pages, this seemed to be the consistent signal of a live product which was in-stock.
 
@@ -54,7 +54,7 @@ The `-headless` argument, enables Selenium to perform this in the background, so
 
 As long as the product is out of stock, only this step will run, so you can set it and forget it.
 
-Only once the "Where to buy" button is detected, the programme will continue on to notify you by email.
+Only once the "Where to buy" button is detected, the programme will continue to notify you by email.
 
 ```python
 port = 587
@@ -94,7 +94,7 @@ We now need a Bash script which executes the Python script.
 source /home/artfvl/Documents/code/kensington-stock-checker/venv/bin/activate
 python3 /home/artfvl/Documents/code/kensington-stock-checker/main.py
 ```
-The Bash script can now be scheduled via a [CRON job](https://crontab.guru/). Craft your own preferred schedule using the link, the example below runs once per hour.
+The Bash script can now be scheduled via a [CRON job](https://crontab.guru/). Craft your preferred schedule using the link, the example below runs once per hour.
 
 ```bash
 0 * * * * bash /home/yourusername/Documents/code/kensington-stock-checker/main.sh
@@ -104,6 +104,6 @@ The Bash script can now be scheduled via a [CRON job](https://crontab.guru/). Cr
 Logging is included, so if some time has passed and you want to double check everything is still running correctly, you can consult `process.log` which should confirm it is either running as expected or needs some attention.
 
 ## Conclusion
-I hope I don't need to use this script much going forward as the convenience of a built in stock reminder is unmatched, but if you find yourself not wanting to keep manually checking on a product with inadequate release information - perhaps this script will serve as a reasonable compromise. Each website may have a slightly different indicator of whether it is in stock, so I would recommend checking against a couple of similar products which are in stock to help identify a reliable signal.
+I hope I don't need to use this script much going forward as the convenience of a built-in stock reminder is unmatched, but if you find yourself not wanting to keep manually checking on a product with inadequate release information - perhaps this script will serve as a reasonable compromise. Each website may have a slightly different indicator of whether it is in stock, so I would recommend checking against a couple of similar products which are in stock to help identify a reliable signal.
 
 Thanks for reading!

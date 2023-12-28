@@ -13,11 +13,11 @@ On our machines, we often perform a very similar - if not identical - set of sta
 
 Once open you also typically organise them into your preferred layout on the display(s).
 
-These actions are as simple as they get, easy, and even relatively quick, so you may wonder why you would even bother trying to make this set of activities more streamlined. As with any repetitive activity I often find myself thinking - could this be better/faster/easier? The answer: absolutely yes. Bash (a.k.a. shell) scripts are a powerful tool, at their core it is a way to automate sequences of commands, while having the added advantage of using variables and logic to achieve more advanced results than you would usually attempt in a terminal. 
+These actions are as simple as they get, easy, and even relatively quick, so you may wonder why you would even bother trying to make this set of activities more streamlined. As with any repetitive activity I often find myself thinking - could this be better/faster/easier? The answer: absolutely yes. Bash (a.k.a. shell) scripts are a powerful tool, at their core it is a way to automate sequences of commands while having the added advantage of using variables and logic to achieve more advanced results than you would usually attempt in a terminal. 
 
 So what can we *actually* achieve with this approach? The sky is the limit, but with the example I opened with, this sequence of tasks can be transformed from 6+ clicks, 3+ cursor drags and 10+ seconds into 1 click or keyboard shortcut, all performed in under a second. 
 
-In addition to the pure time and keystrokes/clicks saved, you also get a less tangible benefit - in automating these tasks you have avoided the mental overhead of locating, panning to, clicking and dragging each of the programmes, instead I find myself starting off the session off on the right foot with a small psychological boost from appreciating the efficiency of my bash script. 
+In addition to the pure time and keystrokes/clicks saved, you also get a less tangible benefit - in automating these tasks you have avoided the mental overhead of locating, panning to, clicking and dragging each of the programmes, instead, I find myself starting off the session off on the right foot with a small psychological boost from appreciating the efficiency of my bash script. 
 
 I often hear Vim users speaking about their config in a similar way, citing that actions can be performed at the 'speed of thought' - i.e. the only barrier between me and starting a coding session is just the time taken to think of wanting to code and pressing the macro button on my mouse.
 
@@ -36,7 +36,7 @@ Everything after the first line will form the commands you wish to execute.
 #!/bin/bash
 echo "Hello World!"
 ```
-In order to make the script executable, run the following command in your terminal: `chmod u+x scriptname.sh`
+To make the script executable, run the following command in your terminal: `chmod u+x scriptname.sh`
 
 To get some inspiration, check out [Devhint's Bash Cheatsheet](https://devhints.io/bash), an excellent resource for an overview of syntax and functionality available to you.
 
@@ -66,7 +66,7 @@ xte 'keydown Control_L' 'keydown Super_L' 'key Right' 'keyup Control_L' 'keydown
 The vast majority of my Python projects start with the same steps:
 - Create a project directory
 - Create a virtual environment
-- Install a couple of go to libraries e.g. `autopep8`
+- Install a couple of go-to libraries e.g. `autopep8`
 - Initialise an empty git repository
 - Create an empty `README.md` file
 - Copy a general purpose Python `.gitignore` file
@@ -83,20 +83,20 @@ if [ $# -eq 0 ]
 fi
 
 if  [ ! -d "$DIR" ]; then
-	mkdir -p $DIR
-	python3 -m venv $DIR/venv
-	source $DIR/venv/bin/activate
-	pip3 install pipreqs
-	pip3 install autopep8
-	git init $DIR
-	touch $DIR/README.md
-	cp "$( dirname -- "$( readlink -f -- "$0"; )"; )/Py.gitignore" $DIR/.gitignore
-	code $DIR
+    mkdir -p $DIR
+    python3 -m venv $DIR/venv
+    source $DIR/venv/bin/activate
+    pip3 install pipreqs
+    pip3 install autopep8
+    git init $DIR
+    touch $DIR/README.md
+    cp "$( dirname -- "$( readlink -f -- "$0"; )"; )/Py.gitignore" $DIR/.gitignore
+    code $DIR
 else
-	echo "Project directory '$1' already exists."
+    echo "Project directory '$1' already exists."
 fi
 ```
-This script introduces a variable and some logic to ensure a project name is both provided and is unique, otherwise an error is returned.
+This script introduces a variable and some logic to ensure a project name is both provided and unique, otherwise an error is returned.
 
 ### Open existing Python Project
 ```Shell
