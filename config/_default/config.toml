@@ -6,6 +6,8 @@ theme = "blowfish"
 baseURL = "https://blog.tomdeabreu.uk/"
 defaultContentLanguage = "en"
 
+timeout = "2m"
+
 # pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
 
 enableRobotsTXT = true
