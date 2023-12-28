@@ -2,7 +2,7 @@
 title = 'PyJigsaw: A Digital Jigsaw Puzzle Factory'
 date = 2023-12-23T00:24:02Z
 tags = ['Python', 'SVG', 'Package']
-draft = true
+draft = false
 +++
 
 ## Introduction
@@ -19,7 +19,7 @@ The design of a puzzle cut is typically fed into a CNC, laser cutting machine wh
 ## Design
 The design of the actual cut involved learning about SVG curves and how to connect them together in a way that looked satisfying and could be procedurally generated. Overall the piece design I went with was similar to the conventional puzzle shape with either a notch or a gap on each of the interior piece sides, but with a more exaggerated curve to achieve a more unique look. I added randomness to introduce heterogeneity by determining whether each side of the piece was a notch or a gap. While there is randomness, the pieces are not truly unique. This is a trait which is valued by puzzle enthusiasts, as uniqueness of each piece makes it easier to avoid 'false fits', which is where two pieces may seem to slot together perfectly, but are in fact not a match. Adding randomness (i.e. a jitter variable) into the curve values themselves would help achieve this and make the cut more interesting, and is a worthwhile future enhancement to this project (similar to Drardech's implementation linked in the intro).
 
-## Cut
+## Masking
 This SVG paths are then used to mask each pieces shape using a [`clipPath`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath), this process loops through all of the pieces and outputs the piece files to a directory of your choosing.
 
 ## Use cases
