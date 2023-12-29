@@ -48,10 +48,11 @@ from pyjigsaw import jigsawfactory
 mycut = jigsawfactory.Cut(4, 4, 500, 500)
 
 mycut.to_svg("template.svg")
+```
 
 *./template.svg*
 ![Puzzle Cut Template SVG File](img/template.png)
-```
+
 ### Creating a template using an image to set the size
 Rather than manually defining the size of the template in pixels, instead, we will pass an image which we have saved locally to determine the size. For this to work we need to pass the image file path and set `use_image` to `True`.
 
