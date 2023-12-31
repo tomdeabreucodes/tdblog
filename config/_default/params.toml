@@ -128,8 +128,8 @@ smartTOC = true
   # domain = "llama.yoursite.com"
 
 [buymeacoffee]
-  identifier = "tomdeabreu"
-  globalWidget = true
+  # identifier = "tomdeabreu"
+  # globalWidget = true
   # globalWidgetMessage = "Hello"
   # globalWidgetColor = "#FFDD00"
   # globalWidgetPosition = "Right"
