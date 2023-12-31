@@ -120,7 +120,7 @@ cd $DIR
 npm run dev
 ```
 ## Github Repo
-https://github.com/tomdeabreucodes/bash-scripts
+{{< github repo="tomdeabreucodes/bash-scripts" >}}
 
 ## Conclusion
 I hope this gives you a useful insight into Bash scripts and some practical use cases. Next time you find yourself getting frustrated at a repetitive task, challenge yourself if it could be offloaded to your machine - happy automation!

@@ -26,8 +26,8 @@ The SVG paths are then used to mask each piece's shape using a [`clipPath`](http
 - Create a digital puzzle set
 - Create a blank template for a puzzle of any custom size
 
-## The code
-https://github.com/tomdeabreucodes/pyjig
+## Github Repo
+{{< github repo="tomdeabreucodes/PyJig" >}}
 
 ## Package
 I packaged this project so it could be easily installed and used locally or in other projects, you can find it listed on PyPI here along with installation instructions: https://pypi.org/project/pyjigsaw/

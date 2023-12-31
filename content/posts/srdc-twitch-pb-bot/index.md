@@ -25,8 +25,7 @@ A simple REST API was the ideal solution in my opinion, with the public SRDC API
 
 ## The Code
 The code for this project is open source under the MIT licence and is intended for self-hosting. Detailed setup instructions have been documented in the project's README.
-
-https://github.com/tomdeabreucodes/SRCommand
+{{< github repo="tomdeabreucodes/SRCommand" >}}
 
 ## Features
 As I mentioned, I had seen simple implementations of PB bots previously, but I saw opportunities for improvement. At the core of my project, I wanted it to embed these key features:

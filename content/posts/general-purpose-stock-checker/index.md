@@ -14,6 +14,8 @@ Naturally, I wondered if there was a straightforward solution to this with code.
 
 ## The Solution
 To address this problem, I decided to create a stock checker which would regularly check the website for me in the background and automatically email me once the page had gone live.
+{{< github repo="tomdeabreucodes/kensington-stock-checker" >}}
+
 ### Python Script
 To achieve this, it mainly relied on two pillars. The most important of which is **Selenium**, a browser automation module available in Python and several other languages. Via Selenium I would automate the process of accessing the product page and checking for the presence of a "Where to buy" button. From researching other product pages, this seemed to be the consistent signal of a live product which was in-stock.
 
